@@ -5,6 +5,11 @@
 
 > 💡 **开发环境说明**：本项目基于 **AutoDL** 算力平台开发完成，核心推理环境运行于 **NVIDIA RTX 4090 (24GB)** 显卡。配套的 AutoDL 镜像即将发布，届时可一键部署。
 
+## 📸 演示 (Demo)
+<div align="center">
+  <img src="demo/demo.png" alt="Demo Image" width="80%">
+</div>
+
 ## 🌟 核心功能特性
 
 ### 1. 多模态影像输入 (Multi-modal Input)
