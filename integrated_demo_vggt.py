@@ -735,7 +735,7 @@ with gr.Blocks(theme=theme, css=css, title="Bio-Tech 3D Reconstruction") as demo
         
         with gr.Row(equal_height=False):
             # Left Column: Generation
-            with gr.Column(scale=6, elem_classes="panel-container"):
+            with gr.Column(scale=4, elem_classes="panel-container"):
                 gr.Markdown("### 🔬 影像输入与生成 | Image Input & Generation")
                 gr.Markdown("---")
                 
@@ -749,7 +749,7 @@ with gr.Blocks(theme=theme, css=css, title="Bio-Tech 3D Reconstruction") as demo
                         with gr.Accordion("⚙️ 高级选项 | Advanced Options", open=False):
                             with gr.Row():
                                 use_additional_prompt = gr.Checkbox(label="启用增强提示词", value=False)
-                                additional_prompt_input = gr.Textbox(label="提示词", placeholder="输入额外的生物特征描述（英文）", visible=False, lines=3)
+                                additional_prompt_input = gr.Textbox(label="提示词", placeholder="输入额外的生物特征描述", visible=False, lines=3)
                         
                         def toggle_prompt(checkbox):
                             return gr.update(visible=checkbox)
@@ -769,7 +769,7 @@ with gr.Blocks(theme=theme, css=css, title="Bio-Tech 3D Reconstruction") as demo
                         with gr.Accordion("⚙️ 高级选项 | Advanced Options", open=False):
                             with gr.Row():
                                 use_additional_prompt_url = gr.Checkbox(label="启用增强提示词", value=False)
-                                additional_prompt_input_url = gr.Textbox(label="提示词", placeholder="输入额外的生物特征描述（英文）", visible=False, lines=3)
+                                additional_prompt_input_url = gr.Textbox(label="提示词", placeholder="输入额外的生物特征描述", visible=False, lines=3)
                         
                         use_additional_prompt_url.change(toggle_prompt, inputs=use_additional_prompt_url, outputs=additional_prompt_input_url)
 
@@ -796,7 +796,7 @@ with gr.Blocks(theme=theme, css=css, title="Bio-Tech 3D Reconstruction") as demo
                 )
                 
             # Right Column: Reconstruction
-            with gr.Column(scale=4, elem_classes="panel-container"):
+            with gr.Column(scale=6, elem_classes="panel-container"):
                 gr.Markdown("### 🧊 三维全息重建 | Holographic 3D Reconstruction")
                 gr.Markdown("---")
                 

@@ -1,13 +1,25 @@
 # 🧬 智能医学影像三维重建系统 (Bio-Medical 3D Reconstruction Core)
 
 ## 📖 项目简介
-本项目是一个基于前沿人工智能技术的医学影像三维重建系统。它旨在解决传统三维重建需要大量多角度素材的痛点，通过单张二维医学图像即可快速生成高质量的三维模型。系统深度集成了图像生成大模型（Qwen-Image-Edit）与三维重建大模型（VGGT），并配合科技感的 Web 交互界面，为医学可视化、教学及初步诊断提供强有力的工具支持。
+本项目是一个基于前沿人工智能技术的医学影像三维重建系统。它旨在解决传统三维重建需要大量多角度素材的痛点，通过单张二维医学图像即可快速生成高质量的三维模型。系统深度集成了图像生成大模型（Qwen-Image-Edit）与三维重建模型（VGGT，Pi3等），并配合极具科技感的 Web 交互界面，为医学可视化、教学及初步诊断提供强有力的工具支持。
+其中基于Depth-anything3的框架具有导出3DGS模型的能力，基于Pi3的框架在重建效果上表现最好
+
+> 💡 **镜像发布**: 基于AutoDL的镜像已经发布！！！可以一键部署搭建在AutoDL平台！如若需要请联系项目作者并提供AutoDL ID以便镜像分享
 
 > 💡 **开发环境说明**：本项目基于 **AutoDL** 算力平台开发完成，核心推理环境运行于 **NVIDIA RTX 4090 (24GB)** 显卡。配套的 AutoDL 镜像即将发布，届时可一键部署。API由 **Modelscope** 平台提供，为了安全请在运行时替换为您对应的Modelscope API key.
 
 ## 📸 演示 (Demo)
 <div align="center">
-  <img src="demo/demo.png" alt="Demo Image" width="80%">
+  <img src="demo/demo_vggt.png" alt="Demo Image" width="80%">
+</div>
+<div align="center">
+  <img src="demo/demo_pi3.png" alt="Demo Image" width="80%">
+</div>
+<div align="center">
+  <img src="demo/demo2_pi3.png" alt="Demo Image" width="80%">
+</div>
+<div align="center">
+  <img src="demo/demo_UI.png" alt="Demo Image" width="80%">
 </div>
 
 ## 🌟 核心功能特性
@@ -28,7 +40,7 @@
 - **背景处理**：减少背景噪声对三维重建的干扰。
 
 ### 4. 高精度三维重建 (3D Reconstruction)
-- **VGGT 核心算法**：集成 VGGT (Visual Geometry Ground Truth) 模型，精准预测深度图与相机位姿。
+- **三维重建**：集成多个三维重建模型，精准预测深度图与相机位姿。
 - **灵活的预测模式**：支持“深度图与相机分支”及“点云图分支”两种预测模式。
 - **参数实时调优**：提供置信度阈值（Confidence Threshold）滑块，用户可实时过滤低置信度点云，优化模型清晰度。
 
@@ -48,23 +60,26 @@
 - [x] 进度条与状态反馈优化
 - [x] 亮/暗色主题切换功能
 - [x] 修复 `np.load` 兼容性问题
+- [x] Depthanything3模型推理流程打通，引入3dgs视频，不过效果很差
+- [x] Pi3 模型推理流程打通
+- [x] 私人AutoDL镜像已打包
 
 ### 🚧 未来 进行中 / 未完成 (In Progress / Todo)
-- [ ] **3DGS (3D Gaussian Splatting) 渲染集成** (核心功能，待开发)
-    - *计划引入 3DGS 技术以实现更连续、更逼真的体积渲染效果，弥补当前稀疏点云/GLB重建的不足。*
-- [ ] 即将发布 AutoDL 镜像
+
+- [ ] 公开AutoDL镜像（需审核）
 - [ ] 增加更多模型导出格式支持 (如 .ply, .obj)
 - [ ] 引入更精细的医学图像分割预处理
 
 ## 🛠️ 运行说明
 
-确保已安装必要的依赖库（`gradio`, `torch`, `openai`, `numpy`, `Pillow` 等），并在项目根目录下运行：
+确保根据需要的模型，已按照其要求安装必要的依赖库（`gradio`, `torch`, `openai`, `numpy`, `Pillow` 等）或根据本项目requirements安装环境，并在本项目根目录下运行：
 
 ```bash
-python integrated_demo.py
+python integrated_demo_{model_name}.py
 ```
 
+可通过demo/Testimage1, demo/Testimage2, demo_heart检验模型效果  
 系统启动后，默认访问地址为 `http://0.0.0.0:6008`。
 
 ---
-*Powered by Gradio, ModelScope & VGGT*
+*Powered by Gradio, ModelScope & VGGT & Pi3 & Depth-anything3*
